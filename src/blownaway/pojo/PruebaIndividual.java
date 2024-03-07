@@ -34,8 +34,11 @@ public class PruebaIndividual extends Prueba{
 
         ganador.ganaPrueba();
         
+        //Muestro el ganador y el que queda eliminado
         System.out.println("Ha ganado: " + ganador.getNombre() );
         System.out.println("Queda eliminado: " + perdedor.getNombre());
+        
+        //Elimino de la lista concursoCopy el perdedor y de la de ganadores añado el ganador
         Concurso.concursoCopy.remove(perdedor);
         Concurso.ganadoresConcurso.add(ganador.getNombre());
     }

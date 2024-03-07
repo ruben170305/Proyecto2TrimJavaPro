@@ -55,6 +55,7 @@ public abstract class Prueba {
         	int puntos = puntuacionesHab(p);
             puntuaciones.put(p, puntos);
             System.out.println(p.getNombre()+": "+puntos);
+            p.setEstres(p.getNIVEL_ESTRES_BASE());
         }
         this.planificacion();
         
@@ -106,7 +107,13 @@ public abstract class Prueba {
                 	p.pesoDelConcurso();
 				} catch (PiezaSeRompeException psre) {
 					// TODO: handle exception
-					restarPuntuacion(puntuaciones, p, puntosmas.nextInt(puntuaciones.get(p)));
+					int puntosAQuitar = puntosmas.nextInt(puntuaciones.get(p));
+					if (puntosAQuitar > (puntuaciones.get(p) /2 ) ) {
+						System.out.println("La pieza de "+p.getNombre()+" se ha roto bastante peligra tu continuidad");
+					} else {
+						System.out.println("La pieza de "+p.getNombre()+" se ha roto poco, puedes recuperarte");
+					}
+					restarPuntuacion(puntuaciones, p, puntosAQuitar);
 				}
                 System.out.print(p.getNombre()+ ": ");
                 pintarAvance(puntuaciones.get(p));

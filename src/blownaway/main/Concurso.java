@@ -110,14 +110,21 @@ public class Concurso {
 		String name = "";
 		do {
 			name = scannerString();
-		} while (name == "" || name == " ");
+			if (!name.matches("[a-zA-Z]+")) {
+				System.err.println("El nombre no puede contener números");
+			}
+		} while (name == "" || name == " " || !name.matches("[a-zA-Z]+"));
 		int edad = 0;
 		do {
 			System.out.print("Introduce la edad del participante: ");
 			edad = scannerInt();
 			if (edad < 18) {
-				System.out.println("Tienes que ser mayor de edad");
+				System.err.println("Tienes que ser mayor de edad");
 				edad = 0;
+			}
+			if (edad>110) {
+				System.err.println("Edad no válida");
+				edad=0;
 			}
 		} while (edad == 0);
 		boolean comprobacion = false;
@@ -128,7 +135,7 @@ public class Concurso {
 			if (edad - exp >= 10) {
 				comprobacion = true;
 			} else {
-				System.out.println("Tu experiencia no coincide con tu edad.");
+				System.err.println("Tu experiencia no es válida.");
 				comprobacion = false;
 			}
 		} while (!comprobacion);
@@ -192,18 +199,24 @@ public class Concurso {
 	 * Método de mostrar el array de ganadores
 	 */
 	public static void resultados() {
-		System.out.println();
-		System.out.println("** GANADORES **");
-		if (ganadoresConcurso.size() > 1) {
-			int c = 1;
-			for (int i = 0; i < ganadoresConcurso.size() - 1; i++) {
-				System.out.println("Prueba " + c + ": " + ganadoresConcurso.get(i));
-				c++;
+		try {
+			System.out.println();
+			System.out.println("** GANADORES **");
+			if (ganadoresConcurso.size() > 1) {
+				int c = 1;
+				for (int i = 0; i < ganadoresConcurso.size() - 1; i++) {
+					System.out.println("Prueba " + c + ": " + ganadoresConcurso.get(i));
+					c++;
+				}
+				System.out.println("Final: " + ganadoresConcurso.get(c - 1));
+			} else {
+				System.out.println("Final: " + ganadoresConcurso.get(0));
 			}
-			System.out.println("Final: " + ganadoresConcurso.get(c - 1));
-		} else {
-			System.out.println("Final: " + ganadoresConcurso.get(0));
+		}catch (IndexOutOfBoundsException iobe) {
+			// TODO: handle exception
+			System.err.println("No se ha iniciado el concurso");
 		}
+		
 	}
 
 	/**

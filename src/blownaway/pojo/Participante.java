@@ -59,10 +59,11 @@ public class Participante {
     public void pesoDelConcurso() throws PiezaSeRompeException {
         this.estres=this.estres + (rd.nextDouble(2)+1);
         if (this.estres>NIVEL_ESTRES_PELIGRO){
-            if (rd.nextInt(21)==20) {
+        	int aleatorio = rd.nextInt(21);
+            if (aleatorio>12) {
                 throw new PiezaSeRompeException("La pieza de "+
                 		nombre+" se ha roto porque el concursante estaba muy estresado.");
-            }
+            } 
         }
     }
 
@@ -113,4 +114,34 @@ public class Participante {
     public String toString() {
     	return nombre;
     }
+
+	public Random getRd() {
+		return rd;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public double getEstres() {
+		return estres;
+	}
+
+	public int getNIVEL_ESTRES_BASE() {
+		return NIVEL_ESTRES_BASE;
+	}
+
+	public int getNIVEL_ESTRES_PELIGRO() {
+		return NIVEL_ESTRES_PELIGRO;
+	}
+
+	public void setEstres(double estres) {
+		this.estres = estres;
+	}
+    
+    
 }
