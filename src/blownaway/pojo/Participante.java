@@ -60,7 +60,8 @@ public class Participante {
         this.estres=this.estres + (rd.nextDouble(2)+1);
         if (this.estres>NIVEL_ESTRES_PELIGRO){
         	int aleatorio = rd.nextInt(21);
-            if (aleatorio>12) {
+            if (aleatorio==12) {
+            	estres = NIVEL_ESTRES_BASE;
                 throw new PiezaSeRompeException("La pieza de "+
                 		nombre+" se ha roto porque el concursante estaba muy estresado.");
             } 

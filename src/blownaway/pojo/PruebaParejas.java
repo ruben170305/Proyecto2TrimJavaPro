@@ -75,7 +75,7 @@ public class PruebaParejas extends Prueba {
 	public String ponerGanadorString(Participante[] array) {
 		String unir = "";
 		for (Participante p : array) {
-			unir = unir+ " " + p.getNombre();
+			unir = unir+ " y " + p.getNombre();
 		}
 		return unir;
 	}

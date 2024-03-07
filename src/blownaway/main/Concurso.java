@@ -106,14 +106,21 @@ public class Concurso {
 	 */
 	public static void nuevoParticipante() {
 		System.out.println("\n** PARTICIPANTE NUEVO **");
-		System.out.print("Introduce el nombre del participante: ");
 		String name = "";
+		boolean isCorrect = false;
 		do {
+			System.out.print("Introduce el nombre del participante: ");
 			name = scannerString();
-			if (!name.matches("[a-zA-Z]+")) {
-				System.err.println("El nombre no puede contener números");
+			try {
+				Integer.parseInt(name);
+			} catch (NumberFormatException nfe) {
+				// TODO: handle exception
+				isCorrect = true;
 			}
-		} while (name == "" || name == " " || !name.matches("[a-zA-Z]+"));
+			if (!isCorrect) {
+				System.err.println("El nombre no es válido");
+			}
+		} while (!isCorrect);
 		int edad = 0;
 		do {
 			System.out.print("Introduce la edad del participante: ");
@@ -198,9 +205,9 @@ public class Concurso {
 	/**
 	 * Método de mostrar el array de ganadores
 	 */
-	public static void resultados() {
+	public static void resultados() throws IndexOutOfBoundsException{
+		System.out.println();
 		try {
-			System.out.println();
 			System.out.println("** GANADORES **");
 			if (ganadoresConcurso.size() > 1) {
 				int c = 1;
